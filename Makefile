@@ -40,3 +40,7 @@ clean:
 
 run:
 	./SFMLGuiTest
+
+build: 
+	mkdir objs
+	make
