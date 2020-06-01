@@ -60,10 +60,11 @@ compile:
 build:
 	-mkdir build
 	-mkdir build/include
+	-mkdir build/include/SFMLGUI
 	-mkdir build/lib
 	-mkdir build/resources
-	cp src/*.h build/include/
-	cp src/*hpp build/include/
+	cp src/*.h build/include/SFMLGUI
+	cp src/*.hpp build/include/SFMLGUI
 	cp resources/*.ttf build/resources/
 	make compile
 	ar rcs build/lib/libsfmlgui.a $(OBJS)

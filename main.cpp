@@ -62,9 +62,8 @@ int main() {
 	select->addItem(0, new SFMLCaption("Citadela"));
 
 	SFMLCircle* circle = new SFMLCircle();
-	circle->setSize(100, 50);
+	circle->setSize(100, 20);
 	circle->setColor(sf::Color::Red);
-	circle->setMargin(20, 0);
 	select->addItem(6, circle);
 
 	select->addItem(0, new SFMLCaption("Mapa do Castelo"));

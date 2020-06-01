@@ -12,7 +12,7 @@ sudo apt install make libsfml-dev
 
 ### Compilation
 
-To build example program:
+To build library:
 
 ```
 make build
