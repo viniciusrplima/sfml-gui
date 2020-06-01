@@ -15,14 +15,16 @@
 #define __SFMLSELECTINPUT_H__
 
 struct SELECT_ITEM {
-	std::string text;
 	int value;
+	SFMLObject* object;
 };
 
 class SFMLSelectInput: public SFMLObject {
 
 	sf::Text m_sfmlText;
 	std::vector<SELECT_ITEM> m_items;
+	int m_offset;
+	int m_target;
 
 public:
 
@@ -30,6 +32,9 @@ public:
 	SFMLSelectInput(SFMLSelectInput*);
 
 	void setItems(const std::vector<SELECT_ITEM>& items);
+	void addItem(SELECT_ITEM& item);
+	void addItem(int value, SFMLObject* obj);
+	void setTarget(int target);
 
 	void render(sf::RenderTarget&, sf::RenderStates);
 	SFMLObject* copy();

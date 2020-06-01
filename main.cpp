@@ -13,29 +13,61 @@
 #include "src/SFMLBox.h"
 #include "src/SFMLCaption.h"
 #include "src/SFMLTextInput.h"
+#include "src/SFMLImage.h"
+#include "src/SFMLSelectInput.h"
+#include "src/SFMLTextureHolder.h"
 
 int main() {
 	
 	SharedWindow window(sf::VideoMode(600, 480), "SFMLGui Test");
 	SFMLGui gui(&window);
 
-	SFMLBox* hud = new SFMLBox();
-	hud->setColor(sf::Color(50, 50, 200, 255));
-	hud->setMargin(10, 10);
-	hud->setSize(0, 150);
-	hud->setVerticalAlign(SFMLObject::End);
-	hud->setHorizontalAlign(SFMLObject::Stretch);
-	gui.addChildren(hud);
+	TextureId texture = g_pSFMLTextureHolder->loadTexture("./resources/bomb.png");
+	SFMLImage* image = new SFMLImage();
+	image->setImage(texture);
+	image->setSize(100, 100);
+	image->setHorizontalAlign(SFMLObject::Center);
+	image->setVerticalAlign(SFMLObject::Center);
 
 	SFMLObject* popup = DOMFactory::createPopup(300, 150);
-	SFMLTextInput* textInput = new SFMLTextInput();
-	textInput->setSize(250, 30);
-	textInput->setHorizontalAlign(SFMLObject::Center);
-	textInput->setVerticalAlign(SFMLObject::Center);
-	popup->addChildren(textInput);
-	popup->setVerticalAlign(SFMLObject::Center);
-	popup->setHorizontalAlign(SFMLObject::Center);
+	popup->addChildren(image);
+	popup->setHorizontalAlign(SFMLObject::Start);
+	popup->setVerticalAlign(SFMLObject::Start);
+	popup->setColor(sf::Color(220, 220, 220, 255));
+	popup->setMargin(20, 20);
+
+	SFMLSelectInput* select = new SFMLSelectInput();
+	select->setSize(250, 400);
+	select->setMargin(10, 10);
+	select->setColor(sf::Color(230, 230, 230, 255));
+	select->setHorizontalAlign(SFMLObject::Stretch);
+	select->setVerticalAlign(SFMLObject::Center);
+	select->setFocusColor(sf::Color(255, 255, 255, 255));
+
+	select->addItem(0, new SFMLCaption("Mapa do Castelo"));
+	select->addItem(0, new SFMLCaption("Mapa do Porao"));
+
+	SFMLImage* image2 = new SFMLImage(image);
+	image2->setMargin(0, 0);
+	select->addItem(0, image2);
+
+	select->addItem(0, new SFMLCaption("Campo de Batalha"));
+	select->addItem(0, new SFMLCaption("Citadela"));
+	select->addItem(0, new SFMLCaption("Mapa do Castelo"));
+	select->addItem(0, new SFMLCaption("Mapa do Porao"));
+	select->addItem(5, image2->copy());
+	select->addItem(0, new SFMLCaption("Campo de Batalha"));
+	select->addItem(0, new SFMLCaption("Citadela"));
+	select->addItem(0, new SFMLCaption("Mapa do Castelo"));
+	select->addItem(0, new SFMLCaption("Mapa do Castelo"));
+	select->addItem(0, new SFMLCaption("Campo de Batalha"));
+	select->addItem(0, new SFMLCaption("Citadela"));
+	select->addItem(0, new SFMLCaption("Mapa do Porao"));
+	select->addItem(0, new SFMLCaption("Campo de Batalha"));
+	select->addItem(0, new SFMLCaption("Citadela"));
+
 	gui.addChildren(popup);
+	gui.addChildren(select);
 
 	while(window->isOpen()) {
 		

@@ -1,7 +1,7 @@
 
 OBJS = objs/main.o objs/SharedWindow.o objs/SFMLGui.o objs/SFMLObject.o\
        objs/SFMLBox.o objs/SFMLCaption.o objs/DOMFactory.o objs/SFMLTextInput.o\
-       objs/SFMLSelectInput.o
+       objs/SFMLSelectInput.o objs/SFMLImage.o objs/SFMLTextureHolder.o
 
 LIBS = -lstdc++ -lsfml-graphics -lsfml-window -lsfml-system
 
@@ -35,12 +35,31 @@ objs/SFMLTextInput.o: src/SFMLTextInput.h src/SFMLTextInput.cpp
 objs/SFMLSelectInput.o: src/SFMLSelectInput.h src/SFMLSelectInput.cpp
 	gcc -c src/SFMLSelectInput.cpp -o objs/SFMLSelectInput.o
 
+objs/SFMLImage.o: src/SFMLImage.h src/SFMLImage.cpp
+	gcc -c src/SFMLImage.cpp -o objs/SFMLImage.o
+
+objs/SFMLTextureHolder.o: src/SFMLTextureHolder.h src/SFMLTextureHolder.cpp
+	gcc -c src/SFMLTextureHolder.cpp -o objs/SFMLTextureHolder.o
+
+.PHONY: clean run compile build
+
 clean:
 	rm SFMLGuiTest $(OBJS)
 
 run:
 	./SFMLGuiTest
 
-build: 
-	mkdir objs
+compile: 
+	-mkdir objs
 	make
+
+build:
+	-mkdir build
+	-mkdir build/include
+	-mkdir build/lib
+	-mkdir build/resources
+	cp src/*.h build/include/
+	cp src/*hpp build/include/
+	cp resources/*.ttf build/resources/
+	make compile
+	ar rcs build/lib/libsfmlgui.a $(OBJS)

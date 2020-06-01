@@ -15,6 +15,7 @@ SFMLGui::SFMLGui(SharedWindow* window) : m_window(window), m_resizeScale(1.0f, 1
 	m_initialWindowSize = sf::Vector2f(size);
 	m_objectRoot->setColor(sf::Color(127, 50, 255, 255));
 	m_objectRoot->setSize(size.x, size.y);
+	m_objectFocused = m_objectRoot;
 }
 
 void SFMLGui::render() {
@@ -46,8 +47,10 @@ void SFMLGui::handleEvent(sf::Event event) {
 		m_objectRoot->handleMouseClick(mousePos);
 	}
 
-	if(event.type == sf::Event::TextEntered) {
-		m_objectFocused->handleEvent(event);
+	if(event.type == sf::Event::TextEntered ||
+	   event.type == sf::Event::KeyPressed) {
+		if(m_objectFocused != 0)
+			m_objectFocused->handleEvent(event);
 	}
 }
 
