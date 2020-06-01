@@ -43,6 +43,7 @@ int main() {
 	select->setHorizontalAlign(SFMLObject::Stretch);
 	select->setVerticalAlign(SFMLObject::Center);
 	select->setFocusColor(sf::Color(255, 255, 255, 255));
+	select->setLayout(SFMLSelectInput::Horizontal);
 
 	select->addItem(0, new SFMLCaption("Mapa do Castelo"));
 	select->addItem(0, new SFMLCaption("Mapa do Porao"));

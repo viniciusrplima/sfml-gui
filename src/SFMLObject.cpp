@@ -260,6 +260,10 @@ void SFMLObject::setSize(int width, int height) {
 	m_rect.height = height;
 }
 
+sf::Vector2f SFMLObject::getSize() {
+	return sf::Vector2f(m_rect.width, m_rect.height);
+}
+
 void SFMLObject::setMargin(int horizontal, int vertical) {
 	m_rect.left = horizontal;
 	m_rect.top = vertical;

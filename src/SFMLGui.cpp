@@ -13,7 +13,7 @@ SFMLGui::SFMLGui(SharedWindow* window) : m_window(window), m_resizeScale(1.0f, 1
 	m_objectRoot = new SFMLBox();
 	auto size = (*window)->getSize();
 	m_initialWindowSize = sf::Vector2f(size);
-	m_objectRoot->setColor(sf::Color(127, 50, 255, 255));
+	m_objectRoot->setColor(sf::Color::Transparent);
 	m_objectRoot->setSize(size.x, size.y);
 	m_objectFocused = m_objectRoot;
 }

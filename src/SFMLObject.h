@@ -85,6 +85,7 @@ public:
 	
 	// Set the size for the object
 	void setSize(int width, int height);
+	sf::Vector2f getSize();
 
 	void setMargin(int horizontal, int vertical);
 
