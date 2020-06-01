@@ -16,6 +16,7 @@
 #include "src/SFMLImage.h"
 #include "src/SFMLSelectInput.h"
 #include "src/SFMLTextureHolder.h"
+#include "src/SFMLCircle.h"
 
 int main() {
 	
@@ -59,6 +60,13 @@ int main() {
 	select->addItem(5, image2->copy());
 	select->addItem(0, new SFMLCaption("Campo de Batalha"));
 	select->addItem(0, new SFMLCaption("Citadela"));
+
+	SFMLCircle* circle = new SFMLCircle();
+	circle->setSize(100, 50);
+	circle->setColor(sf::Color::Red);
+	circle->setMargin(20, 0);
+	select->addItem(6, circle);
+
 	select->addItem(0, new SFMLCaption("Mapa do Castelo"));
 	select->addItem(0, new SFMLCaption("Mapa do Castelo"));
 	select->addItem(0, new SFMLCaption("Campo de Batalha"));
